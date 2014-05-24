@@ -1,11 +1,10 @@
 var require = {
-    baseUrl: "/learningBackbone",
     paths: {
-        backbone: 'js/vendor/backbone-1.1.2.min',
-        icanhaz: 'js/vendor/ICanHaz-0.10.2.min',
-        lodash: 'js/vendor/lodash-2.4.1.min',
-        jquery: 'js/vendor/jquery-1.10.2.min',
-        marionette: 'js/vendor/backbone.marionette-1.8.6.min'
+        backbone: 'vendor/backbone-1.1.2.min',
+        icanhaz: 'vendor/ICanHaz-0.10.2.min',
+        lodash: 'vendor/lodash-2.4.1.min',
+        jquery: 'vendor/jquery-1.10.2.min',
+        marionette: 'vendor/backbone.marionette-1.8.6.min'
     },
 
 

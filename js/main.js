@@ -8,7 +8,7 @@ define(function(require){
         Marionette = require("marionette");
 
 
-    alert('hello world');
+    // ready to code
 
 
 
