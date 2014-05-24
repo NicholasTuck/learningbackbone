@@ -7,11 +7,12 @@ define(function(require) {
         ich = require('icanhaz'),
         Marionette = require('marionette');
 
-    ich.addTemplate('garageLayout', require('text!garage/GarageLayoutTemplate.html'));
+    ich.addTemplate('garageWrapper', require('text!garage/GarageWrapperTemplate.html'));
 
+    // maybe look into boss view instead of so reliant on layouts http://justspamjustin.github.io/BossView/
 
-    var GarageLayoutView = Backbone.Marionette.Layout.extend({
-        template: ich.garageLayout,
+    var GarageWrapperView = Backbone.Marionette.Layout.extend({
+        template: ich.garageWrapper,
         regions: {
             addCar: "#addCar",
             removeCar: "#removeCar",
@@ -19,11 +20,11 @@ define(function(require) {
             garageBrowser: "#garageBrowser",
             log: "#log"
         },
-        onInitialize: function(){
+        initialize: function(){
 //            this.regions.addCar.show(new AddCarView());
 
         }
     });
 
-    return GarageLayoutView;
+    return GarageWrapperView;
 });

@@ -7,7 +7,7 @@ define(function(require) {
         $ = require("jquery"),
         ich = require("icanhaz"),
         Marionette = require("marionette"),
-        GarageLayoutView = require("garage/GarageLayoutView");
+        GarageWrapper = require("garage/GarageWrapperView");
 
     var app = new Marionette.Application();
 
@@ -16,7 +16,7 @@ define(function(require) {
     });
 
     app.addInitializer(function () {
-        app.main.show(new GarageLayoutView());
+        app.main.show(new GarageWrapper());
 //        todoList.fetch();
     });
 
