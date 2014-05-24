@@ -20,10 +20,17 @@ var require = {
 //            exports: 'Backbone'
         },
         marionette: {
-            deps: ['jquery', 'lodash', 'backbone']
-//            exports : 'Marionette'
-        }
+            deps: ['jquery', 'lodash', 'backbone'],
+            exports : 'Marionette'
+        },
+        lodash: {
+            exports: '_'
+        },
 
+        icanhaz: {
+            deps: ['lodash', 'backbone', 'jquery'],
+            exports: 'ich'
+        }
     },
     map : {
         "*" : {"underscore" : "lodash"}
