@@ -4,14 +4,14 @@
     }
 </style>
 <div>
-    {{#make}}
+    {{^empty}}
         Make: {{make}} <br />
         Model: {{model}} <br />
         Has Brakes: {{hasBrakes}} <br />
         Engine Type: {{engineType}} <br />
         Id: {{id}}
-    {{/make}}
-    {{^make}}
+    {{/empty}}
+    {{#empty}}
         Select a car from the list!
-    {{/make}}
+    {{/empty}}
 </div>

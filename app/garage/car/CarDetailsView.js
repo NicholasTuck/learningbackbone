@@ -9,7 +9,12 @@ define(function(require) {
     ich.addTemplate('carDetailsTemplate', require('text!garage/car/CarDetailsTemplate.html'));
 
     var CarDetailsView = Marionette.ItemView.extend({
-        template: ich.carDetailsTemplate
+        template: ich.carDetailsTemplate,
+        templateHelpers: {
+            empty: function () {
+                return (this.model == null);
+            }
+        }
     });
 
     return CarDetailsView;

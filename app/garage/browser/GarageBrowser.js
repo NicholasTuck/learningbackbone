@@ -28,11 +28,13 @@ define(function(require) {
             var carCollection = new CarCollection();
             carCollection.add(new Car({make: 'Nissan', model: 'Altima'}));
             carCollection.add(new Car({make: 'Mazda', model: '3'}));
+            carCollection.add(new Car({make: 'Ford', model: 'Focus'}));
+            carCollection.add(new Car({make: 'GMC', model: 'Truck', hasBrakes: false}));
 
             var carSelectionList = new CarSelectionList({collection: carCollection});
             this.carCollection.show(carSelectionList);
 
-            this.selectedCarDetails.show(new CarDetailsView());
+            this.selectedCarDetails.show(new CarDetailsView({}));
         },
         onMessages : {
             "car:selected" : "onCarSelected"
