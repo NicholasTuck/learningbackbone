@@ -1,0 +1,17 @@
+<style>
+    #selectedCarDetails{
+        margin-left: 10px;
+    }
+</style>
+<div>
+    {{#make}}
+        Make: {{make}} <br />
+        Model: {{model}} <br />
+        Has Brakes: {{hasBrakes}} <br />
+        Engine Type: {{engineType}} <br />
+        Id: {{id}}
+    {{/make}}
+    {{^make}}
+        Select a car from the list!
+    {{/make}}
+</div>

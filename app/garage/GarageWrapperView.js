@@ -5,7 +5,8 @@ define(function(require) {
         _ = require('lodash'),
         $ = require('jquery'),
         ich = require('icanhaz'),
-        Marionette = require('marionette');
+        Marionette = require('marionette'),
+        GarageBrowser = require('garage/browser/GarageBrowser');
 
     ich.addTemplate('garageWrapper', require('text!garage/GarageWrapperTemplate.html'));
 
@@ -13,6 +14,7 @@ define(function(require) {
 
     var GarageWrapperView = Backbone.Marionette.Layout.extend({
         template: ich.garageWrapper,
+        id: 'garageWrapper',
         regions: {
             addCar: "#addCar",
             removeCar: "#removeCar",
@@ -21,8 +23,10 @@ define(function(require) {
             log: "#log"
         },
         initialize: function(){
-//            this.regions.addCar.show(new AddCarView());
 
+        },
+        onRender: function() {
+            this.garageBrowser.show(new GarageBrowser());
         }
     });
 

@@ -1,11 +1,9 @@
 define(function(require){
     "use strict";
 
-    require('plugins');
+    require(['plugins', 'bootstrap']);
     var Backbone = require("backbone"),
      _ = require("lodash"),
-        $ = require("jquery"),
-       ich = require("icanhaz"),
        Marionette = require("marionette"),
 
         app = require('app');
