@@ -20,10 +20,17 @@ define(function(require) {
           carCollection: "#carCollection",
           selectedCarDetails: "#selectedCarDetails"
         },
-        initialize: function(){
+        ui: {
+            panelHeading : '.panel-heading'
+        },
+        initialize: function(options){
             Backbone.Courier.add( this );
         },
         onRender: function() {
+            if (this.options.editable) {
+                this.changePanelHeading("Garage Editor");
+            }
+
             //todo refactor this model into a model in the app.js somehow and pass it to the view here
             var carCollection = new CarCollection();
             carCollection.add(new Car({make: 'Nissan', model: 'Altima'}));
@@ -41,6 +48,9 @@ define(function(require) {
         },
         onCarSelected: function(event) {
             this.selectedCarDetails.show(new CarDetailsView({model: event.data.car}));
+        },
+        changePanelHeading: function(heading) {
+            this.ui.panelHeading.html(heading);
         }
 
     });
