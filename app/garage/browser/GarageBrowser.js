@@ -32,13 +32,13 @@ define(function(require) {
             var carSelectionList = new CarSelectionList({collection: app.models.carCollection});
             this.carCollection.show(carSelectionList);
 
-            this.selectedCarDetails.show(new CarDetailsView({}));
+            this.selectedCarDetails.show(new CarDetailsView({editable: this.options.editable}));
         },
         onMessages : {
             "car:selected" : "onCarSelected"
         },
         onCarSelected: function(event) {
-            this.selectedCarDetails.show(new CarDetailsView({model: event.data.car}));
+            this.selectedCarDetails.show(new CarDetailsView({model: event.data.car, editable: this.options.editable}));
         },
         changePanelHeading: function(heading) {
             this.ui.panelHeading.html(heading);

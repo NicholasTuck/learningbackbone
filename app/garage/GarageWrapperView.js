@@ -2,8 +2,6 @@ define(function(require) {
     'use strict';
 
     var Backbone = require('backbone'),
-        _ = require('lodash'),
-        $ = require('jquery'),
         ich = require('icanhaz'),
         Marionette = require('marionette'),
         GarageBrowser = require('garage/browser/GarageBrowser');
@@ -18,7 +16,7 @@ define(function(require) {
         regions: {
             addCar: "#addCar",
             removeCar: "#removeCar",
-            updateCar: "#updateCar",
+            garageEditor: "#garageEditor",
             garageBrowser: "#garageBrowser",
             log: "#log"
         },
@@ -27,6 +25,7 @@ define(function(require) {
         },
         onRender: function() {
             this.garageBrowser.show(new GarageBrowser());
+            this.garageEditor.show(new GarageBrowser({editable: true}));
         }
     });
 

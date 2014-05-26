@@ -1,16 +1,65 @@
-<style>
+<style xmlns="http://www.w3.org/1999/html">
     #selectedCarDetails{
         margin-left: 10px;
     }
 </style>
 <div>
     {{^empty}}
-        Make: {{make}} <br />
-        Model: {{model}} <br />
-        Has Brakes: {{hasBrakes}} <br />
-        Engine Type: {{engineType}} <br />
-        Id: {{id}}
+        <fieldset {{disabled}} >
+            <form action="" method="" class="form-horizontal input-sm form-compact" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Id</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">{{id}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Make</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="make" placeholder="Example: Nissan" value="{{make}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Model</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="model" placeholder="Example: Altima" value="{{model}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Engine Type</label>
+                    <div class="col-sm-10">
+                        <select name="engineType" class="form-control">
+                            <option>{{engineType}}</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="hasBrakes" {{hasBrakesCheckMark}}>Has Brakes
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                {{#editable}}
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+
+                </div>
+                {{/editable}}
+            </form>
+        </fieldset>
+
     {{/empty}}
+
     {{#empty}}
         Select a car from the list!
     {{/empty}}
