@@ -2,12 +2,10 @@ define(function(require) {
     "use strict";
 
     require('plugins');
-    var Backbone = require("backbone"),
-        _ = require("lodash"),
-        $ = require("jquery"),
-        ich = require("icanhaz"),
-        Marionette = require("marionette"),
-        GarageWrapper = require("garage/GarageWrapperView");
+    var Marionette = require("marionette"),
+        GarageWrapper = require("garage/GarageWrapperView"),
+        CarCollection = require('garage/car/CarCollection'),
+        Car = require('garage/car/Car');
 
     var app = new Marionette.Application();
 
@@ -16,7 +14,16 @@ define(function(require) {
     });
 
     app.addInitializer(function () {
-        app.main.show(new GarageWrapper());
+        this.models = {};
+
+        var carCollection = new CarCollection();
+        carCollection.add(new Car({make: 'Nissan', model: 'Altima'}));
+        carCollection.add(new Car({make: 'Mazda', model: '3'}));
+        carCollection.add(new Car({make: 'Ford', model: 'Focus'}));
+        carCollection.add(new Car({make: 'GMC', model: 'Truck', hasBrakes: false}));
+        this.models.carCollection = carCollection;
+
+        this.main.show(new GarageWrapper());
 //        todoList.fetch();
     });
 

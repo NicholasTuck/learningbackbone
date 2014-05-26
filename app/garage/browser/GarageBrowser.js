@@ -3,14 +3,11 @@ define(function(require) {
 
     require('backboneCourier');
     var Backbone = require('backbone'),
-        _ = require('lodash'),
-        $ = require('jquery'),
         ich = require('icanhaz'),
         Marionette = require('marionette'),
-        Car = require('garage/car/Car'),
-        CarCollection = require('garage/car/CarCollection'),
         CarDetailsView = require('garage/car/CarDetailsView'),
-        CarSelectionList = require('garage/browser/CarSelectionList');
+        CarSelectionList = require('garage/browser/CarSelectionList'),
+        app;
 
     ich.addTemplate('garageBrowser', require('text!garage/browser/GarageBrowserTemplate.html'));
 
@@ -23,22 +20,16 @@ define(function(require) {
         ui: {
             panelHeading : '.panel-heading'
         },
-        initialize: function(options){
-            Backbone.Courier.add( this );
+        initialize: function(){
+            Backbone.Courier.add(this);
+            app = require('app');
         },
         onRender: function() {
             if (this.options.editable) {
                 this.changePanelHeading("Garage Editor");
             }
 
-            //todo refactor this model into a model in the app.js somehow and pass it to the view here
-            var carCollection = new CarCollection();
-            carCollection.add(new Car({make: 'Nissan', model: 'Altima'}));
-            carCollection.add(new Car({make: 'Mazda', model: '3'}));
-            carCollection.add(new Car({make: 'Ford', model: 'Focus'}));
-            carCollection.add(new Car({make: 'GMC', model: 'Truck', hasBrakes: false}));
-
-            var carSelectionList = new CarSelectionList({collection: carCollection});
+            var carSelectionList = new CarSelectionList({collection: app.models.carCollection});
             this.carCollection.show(carSelectionList);
 
             this.selectedCarDetails.show(new CarDetailsView({}));
