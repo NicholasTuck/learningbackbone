@@ -5,24 +5,25 @@ define(function(require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         ich = require('icanhaz'),
-        Marionette = require('marionette');
+        Marionette = require('marionette'),
+        BackboneUtil = require('util/BackboneUtil');
 
     ich.addTemplate('carItem', require('text!garage/browser/CarItemTemplate.html'));
 
     var CarItemView = Marionette.ItemView.extend({
         template: ich.carItem,
-        ui: {
-            link: "a"
-        },
         initialize: function() {
             Backbone.Courier.add( this );
         },
+        onRender: function () {
+            BackboneUtil.removeWrapperElement(this);
+        },
         events: {
-            "click @ui.link": "onClick"
+            "click": "onClick"
         },
         onClick: function(event) {
             this.spawn("car:selected", {car: this.model});
-            this.ui.link.addClass('active');
+            this.$el.addClass('active');
         }
     });
 
