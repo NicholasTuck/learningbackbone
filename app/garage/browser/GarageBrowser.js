@@ -14,7 +14,7 @@ define(function(require) {
     var GarageBrowser = Marionette.Layout.extend({
         template: ich.garageBrowser,
         regions: {
-          carCollection: "#carCollection",
+          carSelection: "#carCollection",
           selectedCarDetails: "#selectedCarDetails"
         },
         ui: {
@@ -23,15 +23,19 @@ define(function(require) {
         initialize: function(){
             Backbone.Courier.add(this);
             app = require('app');
+            this.carCollection = app.models.carCollection;
+            this.listenTo(this.carCollection, 'remove', this.validateCarStillExists);
         },
         onRender: function() {
             if (this.options.editable) {
                 this.changePanelHeading("Garage Editor");
             }
 
-            var carSelectionList = new CarSelectionList({collection: app.models.carCollection});
-            this.carCollection.show(carSelectionList);
-
+            var carSelectionList = new CarSelectionList({collection: this.carCollection});
+            this.carSelection.show(carSelectionList);
+            this.showEmptyCarDetails();
+        },
+        showEmptyCarDetails: function() {
             this.selectedCarDetails.show(new CarDetailsView({editable: this.options.editable}));
         },
         onMessages : {
@@ -42,6 +46,13 @@ define(function(require) {
         },
         changePanelHeading: function(heading) {
             this.ui.panelTitle.html(heading);
+        },
+        validateCarStillExists: function() {
+            var currentCar = this.selectedCarDetails.currentView.model;
+            if(!this.carCollection.get(currentCar)) {
+                this.showEmptyCarDetails();
+            }
+
         }
 
     });
