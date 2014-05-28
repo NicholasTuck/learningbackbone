@@ -18,7 +18,7 @@ define(function(require) {
           selectedCarDetails: "#selectedCarDetails"
         },
         ui: {
-            panelHeading : '.panel-heading'
+            panelTitle : '.panel-title'
         },
         initialize: function(){
             Backbone.Courier.add(this);
@@ -41,7 +41,7 @@ define(function(require) {
             this.selectedCarDetails.show(new CarDetailsView({model: event.data.car, editable: this.options.editable}));
         },
         changePanelHeading: function(heading) {
-            this.ui.panelHeading.html(heading);
+            this.ui.panelTitle.html(heading);
         }
 
     });
