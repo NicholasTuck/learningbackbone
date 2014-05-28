@@ -1,4 +1,4 @@
-define(function (require) {
+define(function(require) {
     'use strict';
 
     require('backboneCourier');
@@ -11,20 +11,11 @@ define(function (require) {
 
     ich.addTemplate('removeCar', require('text!garage/remove/RemoveCarTemplate.html'));
 
-    var RemoveCarModel = Backbone.Model.extend({
-        defaults: {
-            selectedCar: null
-        }
-    });
-
-
     var RemoveCarView = Backbone.Marionette.Layout.extend({
         template: ich.removeCar,
-        initialize: function () {
+        initialize: function() {
             Backbone.Courier.add(this);
             app = require('app');
-            this.model = new RemoveCarModel();
-            this.listenTo(this.model, 'change', this.render);
         },
         regions: {
             carSelection: '.removeCarSelection'
@@ -32,28 +23,31 @@ define(function (require) {
         events: {
             'click button': 'onRemovedClicked'
         },
-        onRender: function () {
+        ui: {
+          removeButton: '.removeButton'
+        },
+        onRender: function() {
             var carSelectionList = new CarSelectionList({collection: app.models.carCollection});
             this.carSelection.show(carSelectionList);
         },
-        templateHelpers: {
-            enabled: function () {
-                return (this.selectedCar === null ? "disabled" : "");
-            }
+        onMessages : {
+            "car:selected" : "onCarSelected"
         },
-        onMessages: {
-            "car:selected": "onCarSelected"
+        onCarSelected: function(event) {
+            this.setSelectedCar(event.data.car);
         },
-        onCarSelected: function (event) {
-            this.model.set('selectedCar', event.data.car);
-        },
-        onRemovedClicked: function () {
+        onRemovedClicked: function() {
             app.models.carCollection.remove(this.options.selectedCar);
+            this.ui.removeButton.prop('disabled', 'disabled');
+
+        },
+        setSelectedCar: function(car) {
+            this.options.selectedCar = car;
+            this.ui.removeButton.prop('disabled', false);
         }
 
     });
 
     return RemoveCarView;
 
-})
-;
+});
