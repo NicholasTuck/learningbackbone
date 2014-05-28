@@ -3,6 +3,7 @@ define(function(require) {
 
     require('backboneCourier');
     var ich = require('icanhaz'),
+        _ = require('lodash'),
         Marionette = require('marionette');
 
     ich.addTemplate('carDetailsTemplate', require('text!garage/car/CarDetailsTemplate.html'));
@@ -11,6 +12,9 @@ define(function(require) {
         template: ich.carDetailsTemplate,
         initialize: function(options){
 
+        },
+        ui: {
+          carForm: '.carForm'
         },
         templateHelpers: function(){
             var that = this;
@@ -28,6 +32,18 @@ define(function(require) {
                     return (that.options.editable ? "" : "disabled");
                 }
             }
+        },
+        events: {
+            'click .saveButton': 'save'
+        },
+        save: function(event) {
+            event.preventDefault();
+            //todo implement me
+            // https://github.com/derickbailey/backbone.syphon looks like a good start
+            // todo I wonder if I will have to listen to change events, or the collection views... probably
+//            var data = (this.ui.carForm.serialize`());
+//            this.model.set(data);
+//            console.log(data);
         }
     });
 
