@@ -6,7 +6,8 @@ define(function(require) {
         Marionette = require('marionette'),
         GarageBrowser = require('garage/browser/GarageBrowser'),
         RemoveCarView = require('garage/remove/RemoveCarView'),
-        AddCarView = require('garage/add/AddCarView');
+        AddCarView = require('garage/add/AddCarView'),
+        LogView = require('garage/log/LogView');
 
     ich.addTemplate('garageWrapper', require('text!garage/GarageWrapperTemplate.html'));
 
@@ -30,6 +31,7 @@ define(function(require) {
             this.garageEditor.show(new GarageBrowser({editable: true}));
             this.removeCar.show(new RemoveCarView());
             this.addCar.show(new AddCarView());
+            this.log.show(new LogView());
         }
     });
 

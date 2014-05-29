@@ -23,6 +23,7 @@ define(function(require) {
             "click": "onClick"
         },
         onClick: function(event) {
+            event.preventDefault();
             this.spawn("car:selected", {car: this.model});
             this.$el.addClass('active');
         },
