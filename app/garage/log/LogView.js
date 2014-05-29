@@ -19,7 +19,10 @@ define(function(require) {
             app = require('app');
             this.listenTo(app.models.carCollection, 'add', this.carAdded);
             this.listenTo(app.models.carCollection, 'remove', this.carRemoved);
-            //todo loop through and listen to each car
+            var that = this;
+            _.forEach(app.models.carCollection.models, function(car) {
+                that.listenTo(car, 'change', that.carChanged);
+            });
         },
         ui: {
             logArea : '.logArea',
@@ -29,9 +32,14 @@ define(function(require) {
         },
         carAdded: function (car) {
             this.logCarWithDescription("Car Added", car);
+            this.listenTo(car, 'change', this.carChanged);
         },
         carRemoved: function (car) {
-            this.logCarWithDescription("Car Removed", car)
+            this.logCarWithDescription("Car Removed", car);
+            this.stopListening(car);
+        },
+        carChanged: function(car) {
+            this.logCarWithDescription("Car Changed", car);
         },
         logCarWithDescription: function (description, car) {
             var moment = Moment();
