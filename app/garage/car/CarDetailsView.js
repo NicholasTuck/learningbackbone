@@ -1,7 +1,7 @@
 define(function(require) {
     'use strict';
 
-    require('backboneCourier');
+    require(['backboneCourier', 'backboneSyphon']);
     var ich = require('icanhaz'),
         _ = require('lodash'),
         Marionette = require('marionette');
@@ -38,12 +38,8 @@ define(function(require) {
         },
         save: function(event) {
             event.preventDefault();
-            //todo implement me
-            // https://github.com/derickbailey/backbone.syphon looks like a good start
-            // todo I wonder if I will have to listen to change events, or the collection views... probably
-//            var data = (this.ui.carForm.serialize`());
-//            this.model.set(data);
-//            console.log(data);
+            var data = Backbone.Syphon.serialize(this);
+            this.model.set(data);
         }
     });
 
