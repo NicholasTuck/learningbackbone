@@ -5,7 +5,8 @@ define(function(require) {
         ich = require('icanhaz'),
         Marionette = require('marionette'),
         GarageBrowser = require('garage/browser/GarageBrowser'),
-        RemoveCarView = require('garage/remove/RemoveCarView');
+        RemoveCarView = require('garage/remove/RemoveCarView'),
+        AddCarView = require('garage/add/AddCarView');
 
     ich.addTemplate('garageWrapper', require('text!garage/GarageWrapperTemplate.html'));
 
@@ -28,6 +29,7 @@ define(function(require) {
             this.garageBrowser.show(new GarageBrowser());
             this.garageEditor.show(new GarageBrowser({editable: true}));
             this.removeCar.show(new RemoveCarView());
+            this.addCar.show(new AddCarView());
         }
     });
 
