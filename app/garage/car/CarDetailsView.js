@@ -11,7 +11,7 @@ define(function(require) {
     var CarDetailsView = Marionette.ItemView.extend({
         template: ich.carDetailsTemplate,
         initialize: function(options){
-
+            if (this.model) this.listenTo(this.model, 'change', this.carDetailsChanged);
         },
         ui: {
           carForm: '.carForm'
@@ -40,6 +40,9 @@ define(function(require) {
             event.preventDefault();
             var data = Backbone.Syphon.serialize(this);
             this.model.set(data);
+        },
+        carDetailsChanged: function () {
+            this.render();
         }
     });
 
