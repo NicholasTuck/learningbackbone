@@ -17,10 +17,15 @@ define(function(require) {
         this.models = {};
 
         var carCollection = new CarCollection();
-        carCollection.add(new Car({make: 'Nissan', model: 'Altima'}));
-        carCollection.add(new Car({make: 'Mazda', model: '3'}));
-        carCollection.add(new Car({make: 'Ford', model: 'Focus'}));
-        carCollection.add(new Car({make: 'GMC', model: 'Truck', hasBrakes: false}));
+        carCollection.fetch();
+
+        if (carCollection.length === 0) {
+            carCollection.add(new Car({make: 'Nissan', model: 'Altima'}));
+            carCollection.add(new Car({make: 'Mazda', model: '3'}));
+            carCollection.add(new Car({make: 'Ford', model: 'Focus'}));
+            carCollection.add(new Car({make: 'GMC', model: 'Truck', hasBrakes: false}));
+        }
+
         this.models.carCollection = carCollection;
 
         this.main.show(new GarageWrapper());

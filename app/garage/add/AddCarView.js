@@ -26,6 +26,7 @@ define(function(require) {
             this.panelBody.show(carDetailsView);
         },
         addNewCar: function() {
+            this.newCar.resetId();
             app.models.carCollection.add(this.newCar);
             this.stopListening(this.newCar);
             this.render();

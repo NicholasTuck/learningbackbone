@@ -10,12 +10,20 @@ define(function(require) {
 //        localStorage: new Backbone.LocalStorage('todos-backbone'),
 
         defaults: {
+            id: '',
             make: '',
             model: '',
             hasBrakes: true,
             engineType: EngineTypes[0]
         },
         initialize: function () {
+            if (!this.get('id')) {
+                this.resetId();
+            } else {
+                globalCounter = Math.max(globalCounter, this.get('id'));
+            }
+        },
+        resetId: function() {
             this.set('id', globalCounter);
             globalCounter += 1;
         }
