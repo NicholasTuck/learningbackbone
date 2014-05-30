@@ -4,7 +4,8 @@ define(function(require) {
     require(['backboneCourier', 'backboneSyphon']);
     var ich = require('icanhaz'),
         _ = require('lodash'),
-        Marionette = require('marionette');
+        Marionette = require('marionette'),
+        EngineTypes = require('garage/car/EngineTypes');
 
     ich.addTemplate('carDetailsTemplate', require('text!garage/car/CarDetailsTemplate.html'));
 
@@ -30,6 +31,10 @@ define(function(require) {
                 },
                 disabled: function() {
                     return (that.options.editable ? "" : "disabled");
+                },
+                engineTypes: EngineTypes,
+                selected: function() {
+                    return (this['.'] === that.model.get('engineType') ? "selected" : "");
                 }
             }
         },

@@ -29,11 +29,9 @@
                     <label class="col-sm-2 control-label input-sm">Engine Type</label>
                     <div class="col-sm-10">
                         <select name="engineType" class="form-control">
-                            <option>{{engineType}}</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            {{#engineTypes}}
+                            <option {{selected}}>{{.}}</option>
+                            {{/engineTypes}}
                         </select>
                     </div>
                 </div>

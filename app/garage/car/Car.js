@@ -3,7 +3,7 @@ define(function(require) {
 
     var Backbone = require('backbone'),
         _ = require('lodash'),
-
+        EngineTypes = require('garage/car/EngineTypes'),
         globalCounter = 0;
 
     var Car = Backbone.Model.extend({
@@ -13,7 +13,7 @@ define(function(require) {
             make: '',
             model: '',
             hasBrakes: true,
-            engineType: 'Four Cylinder'
+            engineType: EngineTypes[0]
         },
         initialize: function () {
             this.set('id', globalCounter);
