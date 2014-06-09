@@ -16,8 +16,8 @@ define(function(require) {
             hasBrakes: true,
             engineType: EngineTypes[0],
             location: {
-                lat: 0,
-                lon: 0
+                lat: '',
+                lon: ''
             }
         },
         initialize: function () {

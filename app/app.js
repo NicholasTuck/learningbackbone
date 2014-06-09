@@ -20,10 +20,10 @@ define(function(require) {
         carCollection.fetch();
 
         if (carCollection.length === 0) {
-            carCollection.add(new Car({make: 'Nissan', model: 'Altima'}));
-            carCollection.add(new Car({make: 'Mazda', model: '3'}));
-            carCollection.add(new Car({make: 'Ford', model: 'Focus'}));
-            carCollection.add(new Car({make: 'GMC', model: 'Truck', hasBrakes: false}));
+            carCollection.add(new Car({make: 'Nissan', model: 'Altima', location: {lat: 41.2, lon: -98.1}}));
+            carCollection.add(new Car({make: 'Mazda', model: '3', location: {lat: 25.7, lon: 80.22}}));
+            carCollection.add(new Car({make: 'Ford', model: 'Focus', location: {lat: 40.7, lon: -74}}));
+            carCollection.add(new Car({make: 'GMC', model: 'Truck', hasBrakes: false, location: {lat: 34.05, lon: -118.25}}));
         }
 
         this.models.carCollection = carCollection;
