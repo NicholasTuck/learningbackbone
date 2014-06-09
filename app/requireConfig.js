@@ -10,12 +10,12 @@ var require = {
         marionette: 'vendor/backbone.marionette-1.8.6.min',
         bootstrap: '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min',
         moment: 'vendor/moment-2.6.0.min',
+        cesium: 'vendor/cesium/Cesium/Cesium',
 
         text: 'vendor/text-2.0.12',
 
         plugins: 'plugins'
     },
-
 
     shim : {
 

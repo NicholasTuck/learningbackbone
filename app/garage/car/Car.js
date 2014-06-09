@@ -14,7 +14,11 @@ define(function(require) {
             make: '',
             model: '',
             hasBrakes: true,
-            engineType: EngineTypes[0]
+            engineType: EngineTypes[0],
+            location: {
+                lat: 0,
+                lon: 0
+            }
         },
         initialize: function () {
             if (!this.get('id')) {

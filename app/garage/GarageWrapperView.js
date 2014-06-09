@@ -7,6 +7,7 @@ define(function(require) {
         GarageBrowser = require('garage/browser/GarageBrowser'),
         RemoveCarView = require('garage/remove/RemoveCarView'),
         AddCarView = require('garage/add/AddCarView'),
+        GarageMapView = require('garage/map/GarageMapView'),
         LogView = require('garage/log/LogView');
 
     ich.addTemplate('garageWrapper', require('text!garage/GarageWrapperTemplate.html'));
@@ -21,6 +22,7 @@ define(function(require) {
             removeCar: "#removeCar",
             garageEditor: "#garageEditor",
             garageBrowser: "#garageBrowser",
+            garageMap: "#garageMap",
             log: "#log"
         },
         initialize: function(){
@@ -31,6 +33,7 @@ define(function(require) {
             this.garageEditor.show(new GarageBrowser({editable: true}));
             this.removeCar.show(new RemoveCarView());
             this.addCar.show(new AddCarView());
+            this.garageMap.show(new GarageMapView());
             this.log.show(new LogView());
         }
     });
