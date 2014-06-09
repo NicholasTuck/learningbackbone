@@ -21,6 +21,8 @@ define(function(require) {
             app = require('app');
             this.carCollection = app.models.carCollection;
             this.listenTo(this.carCollection, 'add', this.addBillboard);
+            this.listenTo(this.carCollection, 'remove', this.removeBillboard);
+            this.listenTo(this.carCollection, 'change', this.updateBillboard);
 
         },
 
@@ -56,9 +58,20 @@ define(function(require) {
         addBillboard: function(car) {
             this.billboards.add({
                 position : Cesium.Cartesian3.fromDegrees(car.get('location').lon, car.get('location').lat),
-                imageIndex : 0
+                imageIndex : 0,
+                id: car
 //                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 8.0e6, 0.0)
             });
+        },
+
+        removeBillboard: function(car) {
+            var foundBillboard = _.find(this.billboards._billboards, {id: car});
+            this.billboards.remove(foundBillboard);
+        },
+
+        updateBillboard: function(car) {
+            this.removeBillboard(car);
+            this.addBillboard(car);
         }
 
     });
