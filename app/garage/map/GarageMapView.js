@@ -14,15 +14,19 @@ define(function(require) {
 
     var GarageBrowser = Marionette.ItemView.extend({
         template: ich.garageMap,
+        zoomHeight: 300000,
 
         initialize: function (options) {
             _.bindAll(this);
 //            Backbone.Courier.add(this);
             app = require('app');
             this.carCollection = app.models.carCollection;
+
             this.listenTo(this.carCollection, 'add', this.addBillboard);
             this.listenTo(this.carCollection, 'remove', this.removeBillboard);
             this.listenTo(this.carCollection, 'change', this.updateBillboard);
+
+            app.vent.on("showing:car", this.flyToCar);
 
         },
 
@@ -42,7 +46,6 @@ define(function(require) {
 
             var image = new Image();
             image.onload = function() {
-//                var billboards = new Cesium.BillboardCollection();
                 var textureAtlas = new Cesium.TextureAtlas({
                     scene : scene,
                     image : image
@@ -72,6 +75,17 @@ define(function(require) {
         updateBillboard: function(car) {
             this.removeBillboard(car);
             this.addBillboard(car);
+        },
+
+        flyToCar: function(car) {
+            var destination = Cesium.Cartesian3.fromDegrees(car.get('location').lon, car.get('location').lat, this.zoomHeight);
+            var scene = this.widget.scene;
+
+            var flight = Cesium.CameraFlightPath.createAnimation(scene, {
+                destination : destination,
+                duration: 3500
+            });
+            scene.animations.add(flight);
         }
 
     });

@@ -52,6 +52,7 @@ define(function(require) {
         showCar: function(car) {
             this.selectedCarDetails.show(new CarDetailsView({model: car, editable: this.options.editable}));
             if (!this.options.editable && !_.isUndefined(car)) {
+                app.vent.trigger("showing:car", car);
                 Backbone.history.navigate("car/" + car.get('id'), {trigger: false});
             }
         },
